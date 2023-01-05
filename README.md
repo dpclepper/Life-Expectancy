@@ -19,24 +19,33 @@ Countries that are classified as developed will have a higher average life expec
 
 ##### Model
 
-The sample is the 183 paired samples we have We have data pairs (xi,yi) for i = 1, … ,183 Model the difference
-Di=Xi−Yi
+The sample consists of 183 paired samples. We have data pairs (xi,yi) for i = 1, … ,183. Modeling the difference,
 
-Di∼N(△,σ)
+```math
+D_i = X_i - Y_i
+```
+
+```math
+D_i \sim N(\triangle, \sigma)
+```
+
 F is a generic distribution for the population of differences △ is the mean of this distribution σ is the standard deviation
 
 ##### Hypothesis
 
-H0:μ1−μ2=0
+```math
+H_0: \mu_1 - \mu_2 = 0
+```
 
-H1:μ1−μ2≠0
-The null hypothesis is there is no difference in sample mean The alternative hypothesis ts there is difference in sample mean
+```math
+H_1 : \mu_1 - \mu_2 \neq 0
+```
 
-We did not want to assume equal variance, so we performed a Welch two sample t-test. This type of t-test calculates the denominator of the t statistic differently, and also adjusts the degrees of freedom to compensate. Below is the pvalue we calculated.
+The null hypothesis is that there is no difference in sample means of the two groups. The alternative hypothesis is that there is a difference in sample means.
 
+We did not want to assume equal variance, so we performed a Welch two sample t-test. This type of t-test calculates the denominator of the t statistic differently, and also adjusts the degrees of freedom to compensate. We calculated a p-value of 1.042296*10^-297.
 
-Next, find a 95% Confidence Interval for μ1−μ2 (difference in sample mean) using two-sample-t-test. Filtering out each status category and pulling out life expectancy. Then, doing t-test on both samples.
-
+Next, we wanted to find a 95% Confidence Interval for μ1−μ2 (difference in sample means) using a Welch's two-sample-t-test, Filtering out each status category and pulling out life expectancy, followed by performing the t-test on both samples.
 
 The observed p-value of ~0.0000 is statistically significant at the conventional 0.05 and 0.01 levels. This p-value provides strong evidence that there is a difference between the average life expectancy of all developed and developing countries. This p-value was also conservative as we allowed the possibility of rejecting the null hypothesis to occur if the difference had been in either direction. In terms of the confidence interval results, we are 95% confident that the mean life expectancy in developed countries is between 11.59881 and 12.67663 years higher than that among developing countries.
 
@@ -58,7 +67,9 @@ Infant deaths have a significant effect on Life Expectancy as the value of 0 is 
 
 Adult Mortality rates are also important to factor in because these occur before what is considered old age and also significantly decrease the Life Expectancy of that country. As shown in the graph above, developed countries do not have nearly as low of Adult Mortality rates as they do Infant Death Rates but they average out to significantly lower than the average of developing countries. The difference in averages seems to be around 100 per 100,000 per year. This is also incredibly important to note because this may account for another large portion of the difference in Life Expectancy between developed and developing countries.
 
-Life Expectancy=75.34 − 0.042×Adult Mortality − 0.0076×Infant Deaths + 7.25×Status
+```math
+Life\ Expectancy = 75.34\ -\ 0.042\times Adult\ Mortality\ -\ 0.0076\times Infant\ Deaths\ +\ 7.25\times Status
+```
 
 From the initial output of a logistic regression model using life expectancy as our target and infant mortality, adult mortality, and status (0 for Developing, 1 for Developed) as features, we found that the median life expectancy is 0.621, which is comparable with the normal life expectancy from our dataset. Additionally, there are now coefficients for each feature included in the model that we can interpret, such as an increase in 1 unit of the adult mortality variable corresponding to a 0.042139 decrease in life expectancy years. We do see a very low multiple R-squared of 0.602, which may increase as more features are added to the model or as we decide to pare off or modify correlated features. Additionally, we can look at how the theoretical life expectancy looks when plotted against the features going into the linear regression model through added-variable plots.
 
